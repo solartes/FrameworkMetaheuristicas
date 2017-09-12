@@ -70,7 +70,7 @@ public class Imprimir {
 
     public double mejorOptimo() {
         double mejor = ganadores.get(0).getEvaluacion();
-        for (int i = 1; i < ganadores.size(); i++) {
+        for (int i = 1; i < ganadores.size(); i++) {            
             if (mejor > ganadores.get(i).getEvaluacion()) {
                 mejor = ganadores.get(i).getEvaluacion();
             }
