@@ -8,6 +8,7 @@ package algoritmos;
 import algoritmo_base.Algoritmo;
 import algoritmo_base.Funcion;
 import algoritmo_base.Individuo;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -50,7 +51,7 @@ public class BHillClimbing extends Algoritmo {
     }
 
     private Individuo nOpe(Individuo ind) {
-        Individuo copia = new Individuo(this, ind.getRepresentacion());
+        Individuo copia = new Individuo(this, (ArrayList<Double>) ind.getRepresentacion().clone());
         int posAl = (int) (0 + r.nextDouble() * (funcion.getDimensiones() - 0));
         double gen = ind.getRepresentacion().get(posAl);
         double perturbacion = 0;

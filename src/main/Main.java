@@ -36,19 +36,19 @@ public class Main {
         ArrayList<Algoritmo> algoritmos = new ArrayList();
 
         HillClimbing hc = new HillClimbing(numIteraciones, -0.5, 0.5);
-        HillClimbingSA hcsa = new HillClimbingSA(numIteraciones, 20, -0.5, 0.5);
-        HillClimbingSAR hcsar = new HillClimbingSAR(numIteraciones, 20, -0.5, 0.5);
+        HillClimbingSA hcsa = new HillClimbingSA(numIteraciones, 5, -0.5, 0.5);
+        HillClimbingSAR hcsar = new HillClimbingSAR(numIteraciones, 5, -0.5, 0.5);
         BHillClimbing bhc = new BHillClimbing(numIteraciones, 0.6, 0.5);
-        HillClimbingRR hcrr = new HillClimbingRR(numIteraciones, 20, -0.5, 0.5);
+        HillClimbingRR hcrr = new HillClimbingRR(numIteraciones, 5, -0.5, 0.5);
         RandomSearch rs = new RandomSearch(numIteraciones);
         SimulatedAnnealing sa = new SimulatedAnnealing(numIteraciones, -0.5, 0.5);
 
+        algoritmos.add(bhc);
         algoritmos.add(hc);
         algoritmos.add(hcsa);
         algoritmos.add(hcsar);
-        algoritmos.add(bhc);
-        algoritmos.add(hcrr);
         algoritmos.add(rs);
+        algoritmos.add(hcrr);
         algoritmos.add(sa);
 
         ArrayList<Funcion> funciones = new ArrayList();
@@ -60,8 +60,8 @@ public class Main {
         Funcion grie = new Griewank(-600, 600, dimensiones);
         Funcion ack = new Ackley(-32, 32, dimensiones);
 
-        funciones.add(fs);
         funciones.add(step);
+        funciones.add(fs);
         funciones.add(sch);
         funciones.add(ras);
         funciones.add(grie);
@@ -89,10 +89,10 @@ public class Main {
 
         }
 
-        generarInforme(informe);
+        generarInforme(informe, algoritmos.size());
     }
 
-    private static void generarInforme(ArrayList<Imprimir> informe) {
+    private static void generarInforme(ArrayList<Imprimir> informe, int numAlg) {
         String forStr = "%20s ";
         String forInt = "%20d";
         String forDec = "%20.10f ";
@@ -105,9 +105,16 @@ public class Main {
         Path path = Paths.get("./ResultadosFramework.txt");
 
         try {
+            int count = 1;
             for (Imprimir iteracion : informe) {
                 line = String.format(formato2, iteracion.getFuncion().getClass().getSimpleName(), iteracion.getAlgoritmo().getClass().getSimpleName(), iteracion.getFuncion().getDimensiones(), iteracion.promedioIteraciones(), iteracion.mejorOptimo(), iteracion.peorOptimo(), iteracion.promedioOptimos(), iteracion.desviacionOptimos(), iteracion.tiempoPromedio());
                 text += line;
+                if (count == numAlg) {
+                    text += "\n";
+                    count = 1;
+                } else {
+                    count++;
+                }
             }
             Files.write(path, text.getBytes());
             Desktop desktop = Desktop.getDesktop();
