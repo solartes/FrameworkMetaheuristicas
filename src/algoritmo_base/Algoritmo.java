@@ -35,9 +35,16 @@ public abstract class Algoritmo {
      *
      * @param funcion Funcion a optimizar
      * @param seed Semilla utilizada para la ejecucion
-     * @return Individuo con la mejor evaluacion
+     * @return Individuo ganador
+     * 
      */
-    public abstract Individuo ejecutar(Funcion funcion, long seed);
+    public Individuo ejecutar(Funcion funcion, long seed) {
+        this.funcion = funcion;
+        this.seed = seed;
+        return ejecutar();
+    }
+
+    public abstract Individuo ejecutar();
 
     //Constructores, getters, setters
     public Algoritmo(double radInf, double radSup, int numIteraciones) {

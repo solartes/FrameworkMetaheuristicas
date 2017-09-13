@@ -30,9 +30,7 @@ public class SimulatedAnnealing extends Algoritmo {
     }
 
     @Override
-    public Individuo ejecutar(Funcion funcion, long seed) {
-        this.funcion = funcion;
-        this.seed = seed;
+    public Individuo ejecutar() {
         tInicial = 100;
         t = tInicial;
         r = new Random(seed);

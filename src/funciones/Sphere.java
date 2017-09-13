@@ -15,9 +15,10 @@ import java.util.ArrayList;
  */
 public class Sphere extends Funcion {
 
-    public Sphere(double rangoMin, double rangoMax, int dimensiones) {
-        super(rangoMin, rangoMax, dimensiones);
+    public Sphere(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+        super(rangoMin, rangoMax, dimensiones, optimo);
     }
+
 
 
 

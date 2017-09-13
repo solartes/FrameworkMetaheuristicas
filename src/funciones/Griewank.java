@@ -7,6 +7,7 @@ package funciones;
 
 import algoritmo_base.Funcion;
 import algoritmo_base.Individuo;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,8 +15,8 @@ import algoritmo_base.Individuo;
  */
 public class Griewank extends Funcion{
 
-    public Griewank(double rangoMin, double rangoMax, int dimensiones) {
-        super(rangoMin, rangoMax, dimensiones);
+    public Griewank(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+        super(rangoMin, rangoMax, dimensiones, optimo);
     }
 
 

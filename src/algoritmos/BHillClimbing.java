@@ -29,12 +29,10 @@ public class BHillClimbing extends Algoritmo {
     }
 
     @Override
-    public Individuo ejecutar(Funcion funcion, long seed) {
-        this.funcion = funcion;
-        this.seed = seed;
+    public Individuo ejecutar() {
         r = new Random(seed);
         ind = new Individuo(this);
-        for (int i = 0; i < numIteraciones; i++) {
+        for (int i = 0; i < numIteraciones; i++) {            
             mutInd = nOpe(ind);
             for (int j = 0; j < funcion.getDimensiones(); j++) {
                 if (r.nextDouble() < beta) {

@@ -32,7 +32,13 @@ public class Main {
         long seed = 0;
         int numIteraciones = 5000;
         int dimensiones = 10;
-
+        
+        ArrayList<Double> optimo=new ArrayList();
+        for (int i = 0; i < dimensiones; i++) {
+            optimo.add(0.0);
+        }
+        
+        
         ArrayList<Algoritmo> algoritmos = new ArrayList();
 
         HillClimbing hc = new HillClimbing(numIteraciones, -0.5, 0.5);
@@ -53,12 +59,12 @@ public class Main {
 
         ArrayList<Funcion> funciones = new ArrayList();
 
-        Funcion fs = new Sphere(-100, 100, dimensiones);
-        Funcion step = new Step(-100, 100, dimensiones);
-        Funcion sch = new Schwefel(-100, 100, dimensiones);
-        Funcion ras = new Rastrigin(-5.12, 5.12, dimensiones);
-        Funcion grie = new Griewank(-600, 600, dimensiones);
-        Funcion ack = new Ackley(-32, 32, dimensiones);
+        Funcion fs = new Sphere(-100, 100, dimensiones,optimo);
+        Funcion step = new Step(-100, 100, dimensiones,optimo);
+        Funcion sch = new Schwefel(-100, 100, dimensiones,optimo);
+        Funcion ras = new Rastrigin(-5.12, 5.12, dimensiones,optimo);
+        Funcion grie = new Griewank(-600, 600, dimensiones,optimo);
+        Funcion ack = new Ackley(-32, 32, dimensiones,optimo);
 
         funciones.add(step);
         funciones.add(fs);

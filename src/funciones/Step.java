@@ -7,6 +7,7 @@ package funciones;
 
 import algoritmo_base.Funcion;
 import algoritmo_base.Individuo;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,11 +15,9 @@ import algoritmo_base.Individuo;
  */
 public class Step extends Funcion{
 
-    public Step(double rangoMin, double rangoMax, int dimensiones) {
-        super(rangoMin, rangoMax, dimensiones);
+    public Step(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+        super(rangoMin, rangoMax, dimensiones, optimo);
     }
-
-
 
     @Override
     public double evaluarIndividuo(Individuo ind) {

@@ -7,6 +7,7 @@ package funciones;
 
 import algoritmo_base.Funcion;
 import algoritmo_base.Individuo;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,9 +15,11 @@ import algoritmo_base.Individuo;
  */
 public class Ackley extends Funcion{
 
-    public Ackley(double rangoMin, double rangoMax, int dimensiones) {
-        super(rangoMin, rangoMax, dimensiones);
+    public Ackley(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+        super(rangoMin, rangoMax, dimensiones, optimo);
     }
+
+
 
 
 

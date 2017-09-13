@@ -27,9 +27,7 @@ public class HillClimbingRR extends Algoritmo {
     }
 
     @Override
-    public Individuo ejecutar(Funcion funcion, long seed) {
-        this.funcion = funcion;
-        this.seed = seed;
+    public Individuo ejecutar() {
         r = new Random(seed);
         sInd = new Individuo(this);
         best = sInd;

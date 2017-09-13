@@ -5,6 +5,8 @@
  */
 package algoritmo_base;
 
+import java.util.ArrayList;
+
 /**
  * Clase abstracta Funcion, Atributos
  *
@@ -19,7 +21,7 @@ public abstract class Funcion {
     protected double rangoMin;
     protected double rangoMax;
     protected int dimensiones;
-    protected double optimo;
+    protected ArrayList<Double> optimo;
 
     /**
      * Metedo que evalua un individuo.
@@ -30,17 +32,11 @@ public abstract class Funcion {
     public abstract double evaluarIndividuo(Individuo ind);
 
     //Constructores, getter, setter
-    public Funcion(double rangoMin, double rangoMax, int dimensiones, double optimo) {
+    public Funcion(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
         this.rangoMin = rangoMin;
         this.rangoMax = rangoMax;
         this.dimensiones = dimensiones;
         this.optimo = optimo;
-    }
-
-    public Funcion(double rangoMin, double rangoMax, int dimensiones) {
-        this.rangoMin = rangoMin;
-        this.rangoMax = rangoMax;
-        this.dimensiones = dimensiones;
     }
 
     public int getDimensiones() {
@@ -55,12 +51,14 @@ public abstract class Funcion {
         return rangoMax;
     }
 
-    public double getOptimo() {
+    public ArrayList<Double> getOptimo() {
         return optimo;
     }
 
-    public void setOptimo(double optimo) {
+    public void setOptimo(ArrayList<Double> optimo) {
         this.optimo = optimo;
     }
+
+
 
 }
