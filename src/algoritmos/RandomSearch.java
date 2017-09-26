@@ -27,7 +27,7 @@ public class RandomSearch extends Algoritmo {
     public Individuo ejecutar() {
         r = new Random(seed);
         best = new Individuo(this);
-        while (numIteraciones!=0) { 
+        while (numIteraciones>0&&funcion.getOptimo() != best.getEvaluacion() && Math.abs(best.getEvaluacion() - funcion.getOptimo()) >= 1 * Math.pow(10, -9)) { 
             sInd = new Individuo(this);
             if (sInd.getEvaluacion() < best.getEvaluacion()) {
                 best = sInd;

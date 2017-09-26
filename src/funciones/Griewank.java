@@ -15,10 +15,9 @@ import java.util.ArrayList;
  */
 public class Griewank extends Funcion{
 
-    public Griewank(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+    public Griewank(double rangoMin, double rangoMax, int dimensiones, double optimo) {
         super(rangoMin, rangoMax, dimensiones, optimo);
     }
-
 
 
     @Override

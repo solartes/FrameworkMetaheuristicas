@@ -20,16 +20,21 @@ public class Imprimir {
     Funcion funcion;
     ArrayList<Individuo> ganadores;
     ArrayList<Long> tiempos;
+    ArrayList<Integer> iteraciones;
+    int mejorPos;
 
-    public Imprimir(Algoritmo algoritmo, Funcion funcion, ArrayList<Individuo> ganadores) {
+    public Imprimir(Algoritmo algoritmo, Funcion funcion, ArrayList<Individuo> ganadores, ArrayList<Integer> iteraciones) {
         this.algoritmo = algoritmo;
         this.funcion = funcion;
         this.ganadores = ganadores;
+        this.iteraciones = iteraciones;
+        mejorPos=0;
     }
 
     public Imprimir() {
         ganadores = new ArrayList();
         tiempos = new ArrayList();
+        iteraciones = new ArrayList();
         funcion = null;
         algoritmo = null;
     }
@@ -65,13 +70,20 @@ public class Imprimir {
     public void setTiempos(ArrayList<Long> tiempos) {
         this.tiempos = tiempos;
     }
-    
-    
+
+    public ArrayList<Integer> getIteraciones() {
+        return iteraciones;
+    }
+
+    public void setIteraciones(ArrayList<Integer> iteraciones) {
+        this.iteraciones = iteraciones;
+    }
 
     public double mejorOptimo() {
         double mejor = ganadores.get(0).getEvaluacion();
-        for (int i = 1; i < ganadores.size(); i++) {            
+        for (int i = 1; i < ganadores.size(); i++) {
             if (mejor > ganadores.get(i).getEvaluacion()) {
+                mejorPos=i;
                 mejor = ganadores.get(i).getEvaluacion();
             }
         }
@@ -97,26 +109,43 @@ public class Imprimir {
         return peor;
     }
 
-    public int promedioIteraciones() {
-        return 0;
+    public int promedioIteraciones(int total) {
+        int sum = 0;
+        int it = 0;
+
+        for (Integer ganador : iteraciones) {
+            it = Math.abs(ganador - total);
+            sum += it;
+        }
+
+        return sum / ganadores.size();
     }
 
     public double desviacionOptimos() {
-        double promedio=promedioOptimos();
-        double sum=0;
-        for(Individuo ganador:ganadores){
-            sum+=Math.pow(ganador.getEvaluacion()-promedio,2);
+        double promedio = promedioOptimos();
+        double sum = 0;
+        for (Individuo ganador : ganadores) {
+            sum += Math.pow(ganador.getEvaluacion() - promedio, 2);
         }
-        return sum/(ganadores.size()-1);
+        return sum / (ganadores.size() - 1);
     }
 
     public double tiempoPromedio() {
-        long sum=0;
-        for (long tiempo:tiempos) {          
-            sum+=tiempo;
+        long sum = 0;
+        for (long tiempo : tiempos) {
+            sum += tiempo;
         }
-        double promedio=sum/tiempos.size(); 
-        return promedio/1000;
+        double promedio = sum / tiempos.size();
+        return promedio / 1000;
+    }
+    
+    public String imprimirMejorIndividuo(){
+        String linea=""+ganadores.get(mejorPos).getRepresentacion().get(0);
+        for (int i = 1; i < ganadores.get(mejorPos).getRepresentacion().size(); i++) {
+            ArrayList<Double> representacion = ganadores.get(mejorPos).getRepresentacion();
+            linea+=";;"+representacion.get(i);
+        }
+        return linea;
     }
 
 }

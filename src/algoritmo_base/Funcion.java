@@ -21,7 +21,7 @@ public abstract class Funcion {
     protected double rangoMin;
     protected double rangoMax;
     protected int dimensiones;
-    protected ArrayList<Double> optimo;
+    protected double optimo;
 
     /**
      * Metedo que evalua un individuo.
@@ -32,7 +32,7 @@ public abstract class Funcion {
     public abstract double evaluarIndividuo(Individuo ind);
 
     //Constructores, getter, setter
-    public Funcion(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+    public Funcion(double rangoMin, double rangoMax, int dimensiones, double optimo) {
         this.rangoMin = rangoMin;
         this.rangoMax = rangoMax;
         this.dimensiones = dimensiones;
@@ -51,13 +51,15 @@ public abstract class Funcion {
         return rangoMax;
     }
 
-    public ArrayList<Double> getOptimo() {
+    public double getOptimo() {
         return optimo;
     }
 
-    public void setOptimo(ArrayList<Double> optimo) {
+    public void setOptimo(double optimo) {
         this.optimo = optimo;
     }
+
+
 
 
 

@@ -36,7 +36,7 @@ public class SimulatedAnnealing extends Algoritmo {
         r = new Random(seed);
         sInd = new Individuo(this);
         best = sInd;
-        while (t > 1 * Math.pow(10, -7)) {
+        while (t > 1 * Math.pow(10, -7)&&funcion.getOptimo() != best.getEvaluacion() && Math.abs(best.getEvaluacion() - funcion.getOptimo()) >= 1 * Math.pow(10, -9)) {
             rInd = sInd.tweak();
             expTemp = Math.exp((sInd.getEvaluacion() - rInd.getEvaluacion()) / t);
             if (rInd.getEvaluacion() < sInd.getEvaluacion() || (r.nextDouble() < expTemp)) {
@@ -44,6 +44,7 @@ public class SimulatedAnnealing extends Algoritmo {
             }
             disminuirTemp();
             if (sInd.getEvaluacion() < best.getEvaluacion()) {
+//                System.out.println("sInd: "+sInd.getEvaluacion());
                 best = sInd;
             }
         }

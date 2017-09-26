@@ -15,13 +15,11 @@ import java.util.ArrayList;
  */
 public class Ackley extends Funcion{
 
-    public Ackley(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+    public Ackley(double rangoMin, double rangoMax, int dimensiones, double optimo) {
         super(rangoMin, rangoMax, dimensiones, optimo);
     }
 
-
-
-
+    
 
     @Override
     public double evaluarIndividuo(Individuo ind) {

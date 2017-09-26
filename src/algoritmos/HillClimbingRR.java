@@ -31,18 +31,22 @@ public class HillClimbingRR extends Algoritmo {
         r = new Random(seed);
         sInd = new Individuo(this);
         best = sInd;
-        while (numIteraciones >= 0) {
+        while (numIteraciones > 0 && funcion.getOptimo() != best.getEvaluacion() && Math.abs(best.getEvaluacion() - funcion.getOptimo()) >= 1 * Math.pow(10, -9)) {
             for (int j = 0; j < nTweaks; j++) {
-                if (numIteraciones <= 0) {                   
-                    break;
-                }
                 rInd = sInd.tweak();
                 if (rInd.getEvaluacion() < sInd.getEvaluacion()) {
                     sInd = rInd;
                 }
+                if (numIteraciones <= 0) {
+                    break;
+                }
             }
             if (sInd.getEvaluacion() < best.getEvaluacion()) {
+//                System.out.println("sInd:"+sInd.getEvaluacion());
                 best = sInd;
+            }
+            if (numIteraciones <= 0) {
+                break;
             }
             sInd = new Individuo(this);
         }

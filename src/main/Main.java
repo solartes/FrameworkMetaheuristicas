@@ -5,10 +5,16 @@
  */
 package main;
 
+import main.*;
 import algoritmo_base.Algoritmo;
 import algoritmo_base.Funcion;
 import algoritmos.*;
-import funciones.*;
+import funciones.Ackley;
+import funciones.Griewank;
+import funciones.Rastrigin;
+import funciones.Schwefel;
+import funciones.Sphere;
+import funciones.Step;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,6 +24,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.Imprimir;
 
 /**
  *
@@ -32,11 +39,8 @@ public class Main {
         long seed = 0;
         int numIteraciones = 5000;
         int dimensiones = 10;
-        
-        ArrayList<Double> optimo=new ArrayList();
-        for (int i = 0; i < dimensiones; i++) {
-            optimo.add(0.0);
-        }
+        double optimo=0;
+
         
         
         ArrayList<Algoritmo> algoritmos = new ArrayList();
@@ -95,10 +99,10 @@ public class Main {
 
         }
 
-        generarInforme(informe, algoritmos.size());
+        generarInforme(informe, algoritmos.size(),numIteraciones);
     }
 
-    private static void generarInforme(ArrayList<Imprimir> informe, int numAlg) {
+    private static void generarInforme(ArrayList<Imprimir> informe, int numAlg, int numIteraciones) {
         String forStr = "%20s ";
         String forInt = "%20d";
         String forDec = "%20.10f ";
@@ -113,7 +117,7 @@ public class Main {
         try {
             int count = 1;
             for (Imprimir iteracion : informe) {
-                line = String.format(formato2, iteracion.getFuncion().getClass().getSimpleName(), iteracion.getAlgoritmo().getClass().getSimpleName(), iteracion.getFuncion().getDimensiones(), iteracion.promedioIteraciones(), iteracion.mejorOptimo(), iteracion.peorOptimo(), iteracion.promedioOptimos(), iteracion.desviacionOptimos(), iteracion.tiempoPromedio());
+                line = String.format(formato2, iteracion.getFuncion().getClass().getSimpleName(), iteracion.getAlgoritmo().getClass().getSimpleName(), iteracion.getFuncion().getDimensiones(), iteracion.promedioIteraciones(numIteraciones), iteracion.mejorOptimo(), iteracion.peorOptimo(), iteracion.promedioOptimos(), iteracion.desviacionOptimos(), iteracion.tiempoPromedio());
                 text += line;
                 if (count == numAlg) {
                     text += "\n";

@@ -5,7 +5,6 @@
  */
 package algoritmo_base;
 
-import algoritmo_base.Individuo;
 import java.util.Random;
 
 /**

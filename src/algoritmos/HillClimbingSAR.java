@@ -33,7 +33,7 @@ public class HillClimbingSAR extends Algoritmo {
         r = new Random(seed);
         sInd = new Individuo(this);
         mejorInd = sInd;
-        while (numIteraciones >= 0) {
+        while (numIteraciones > 0&&funcion.getOptimo() != mejorInd.getEvaluacion() && Math.abs(mejorInd.getEvaluacion() - funcion.getOptimo()) >= 1 * Math.pow(10, -9)) {
             rInd = sInd.tweak();
             for (int j = 0; j < nTweaks; j++) {
                 if (numIteraciones <= 0) {

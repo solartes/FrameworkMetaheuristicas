@@ -22,7 +22,7 @@ public class BHillClimbing extends Algoritmo {
     Individuo ind;
     Individuo mutInd;
 
-    public BHillClimbing(int numIteraciones,double bandWidth, double beta) {
+    public BHillClimbing(int numIteraciones, double bandWidth, double beta) {
         this.bandWidth = bandWidth;
         this.beta = beta;
         this.numIteraciones = numIteraciones;
@@ -32,7 +32,7 @@ public class BHillClimbing extends Algoritmo {
     public Individuo ejecutar() {
         r = new Random(seed);
         ind = new Individuo(this);
-        for (int i = 0; i < numIteraciones; i++) {            
+        while (numIteraciones > 0&&funcion.getOptimo()!=ind.getEvaluacion()&&Math.abs(ind.getEvaluacion()-funcion.getOptimo())>=1*Math.pow(10, -9)) {
             mutInd = nOpe(ind);
             for (int j = 0; j < funcion.getDimensiones(); j++) {
                 if (r.nextDouble() < beta) {
@@ -42,7 +42,8 @@ public class BHillClimbing extends Algoritmo {
             mutInd.setEvaluacion(funcion.evaluarIndividuo(mutInd));
             numIteraciones = numIteraciones - 1;
             if (mutInd.getEvaluacion() < ind.getEvaluacion()) {
-                ind = mutInd;
+                //System.out.println("Ind: "+mutInd.getEvaluacion());
+                ind = mutInd;                
             }
         }
         return ind;
@@ -57,10 +58,9 @@ public class BHillClimbing extends Algoritmo {
             perturbacion = gen + (r.nextDouble() * bandWidth);
         } while (perturbacion > funcion.getRangoMax() || perturbacion < funcion.getRangoMin());
         copia.getRepresentacion().set(posAl, perturbacion);
-        copia.setEvaluacion(funcion.evaluarIndividuo(copia));
-        numIteraciones = numIteraciones - 1;
+//        copia.setEvaluacion(funcion.evaluarIndividuo(copia));
+//        numIteraciones = numIteraciones - 1;
         return copia;
     }
-
 
 }

@@ -15,10 +15,11 @@ import java.util.ArrayList;
  */
 public class Step extends Funcion{
 
-    public Step(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+    public Step(double rangoMin, double rangoMax, int dimensiones, double optimo) {
         super(rangoMin, rangoMax, dimensiones, optimo);
     }
 
+    
     @Override
     public double evaluarIndividuo(Individuo ind) {
         double sum=0;

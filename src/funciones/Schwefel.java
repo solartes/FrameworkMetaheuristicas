@@ -15,14 +15,11 @@ import java.util.ArrayList;
  */
 public class Schwefel extends Funcion {
 
-    public Schwefel(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+    public Schwefel(double rangoMin, double rangoMax, int dimensiones, double optimo) {
         super(rangoMin, rangoMax, dimensiones, optimo);
     }
 
-
-
-
-
+    
     @Override
     public double evaluarIndividuo(Individuo ind) {
         double sum = 0;

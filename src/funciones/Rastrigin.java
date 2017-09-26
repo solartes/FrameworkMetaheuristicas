@@ -15,11 +15,9 @@ import java.util.ArrayList;
  */
 public class Rastrigin extends Funcion{
 
-    public Rastrigin(double rangoMin, double rangoMax, int dimensiones, ArrayList<Double> optimo) {
+    public Rastrigin(double rangoMin, double rangoMax, int dimensiones, double optimo) {
         super(rangoMin, rangoMax, dimensiones, optimo);
     }
-
-
 
 
     @Override

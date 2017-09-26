@@ -14,28 +14,27 @@ import java.util.Random;
  *
  * @author ingesis
  */
-public class HillClimbing extends Algoritmo{
+public class HillClimbing extends Algoritmo {
 
     Individuo sInd;
     Individuo rInd;
-    
 
-    public HillClimbing(int numIteraciones, double radInf,double radSup) {
-        super(radInf, radSup, numIteraciones);         
+    public HillClimbing(int numIteraciones, double radInf, double radSup) {
+        super(radInf, radSup, numIteraciones);
     }
 
     @Override
     public Individuo ejecutar() {
         r = new Random(seed);
         sInd = new Individuo(this);
-        while (numIteraciones!=0) {        
+        while (numIteraciones > 0&&funcion.getOptimo() != sInd.getEvaluacion() && Math.abs(sInd.getEvaluacion() - funcion.getOptimo()) >= 1 * Math.pow(10, -9)) {
             rInd = sInd.tweak();
             if (rInd.getEvaluacion() < sInd.getEvaluacion()) {
+                //System.out.println("r Ind:"+rInd.getEvaluacion());
                 sInd = rInd;
             }
-        }        
+        }
         return sInd;
-    }  
+    }
 
-    
 }
