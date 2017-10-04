@@ -5,16 +5,13 @@
  */
 package main;
 
+import algoritmo_base.AlgoritmoPoblacional;
+import algoritmosEstadoSimple.*;
 import main.*;
-import algoritmo_base.Algoritmo;
+import algoritmo_base.AlgoritmoSimple;
 import algoritmo_base.Funcion;
-import algoritmos.*;
-import funciones.Ackley;
-import funciones.Griewank;
-import funciones.Rastrigin;
-import funciones.Schwefel;
-import funciones.Sphere;
-import funciones.Step;
+import algoritmosPoblacionales.AlgoritmoGenetico;
+import funciones.*;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,7 +21,11 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import main.Imprimir;
+import operadoresCruce.*;
+import operadoresMutacion.*;
+import operadoresReemplazo.*;
+import operadoresSeleccion.*;
+import operadoresSeleccion.*;
 
 /**
  *
@@ -36,71 +37,80 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        long seed = 0;
-        int numIteraciones = 5000;
-        int dimensiones = 10;
-        double optimo=0;
-
-        
-        
-        ArrayList<Algoritmo> algoritmos = new ArrayList();
-
-        HillClimbing hc = new HillClimbing(numIteraciones, -0.5, 0.5);
-        HillClimbingSA hcsa = new HillClimbingSA(numIteraciones, 5, -0.5, 0.5);
-        HillClimbingSAR hcsar = new HillClimbingSAR(numIteraciones, 5, -0.5, 0.5);
-        BHillClimbing bhc = new BHillClimbing(numIteraciones, 0.6, 0.5);
-        HillClimbingRR hcrr = new HillClimbingRR(numIteraciones, 5, -0.5, 0.5);
-        RandomSearch rs = new RandomSearch(numIteraciones);
-        SimulatedAnnealing sa = new SimulatedAnnealing(numIteraciones, -0.5, 0.5);
-
-        algoritmos.add(bhc);
-        algoritmos.add(hc);
-        algoritmos.add(hcsa);
-        algoritmos.add(hcsar);
-        algoritmos.add(rs);
-        algoritmos.add(hcrr);
-        algoritmos.add(sa);
-
-        ArrayList<Funcion> funciones = new ArrayList();
-
-        Funcion fs = new Sphere(-100, 100, dimensiones,optimo);
-        Funcion step = new Step(-100, 100, dimensiones,optimo);
-        Funcion sch = new Schwefel(-100, 100, dimensiones,optimo);
-        Funcion ras = new Rastrigin(-5.12, 5.12, dimensiones,optimo);
-        Funcion grie = new Griewank(-600, 600, dimensiones,optimo);
-        Funcion ack = new Ackley(-32, 32, dimensiones,optimo);
-
-        funciones.add(step);
-        funciones.add(fs);
-        funciones.add(sch);
-        funciones.add(ras);
-        funciones.add(grie);
-        funciones.add(ack);
-
-        ArrayList<Imprimir> informe = new ArrayList();
-        for (Funcion funcion : funciones) {
-            Imprimir temp = new Imprimir();
-            temp.setFuncion(funcion);
-            for (Algoritmo algoritmo : algoritmos) {
-                temp.setAlgoritmo(algoritmo);
-                for (int i = 0; i < 30; i++) {
-                    long startTime = System.nanoTime();
-                    temp.getGanadores().add(algoritmo.ejecutar(funcion, seed));
-                    long endTime = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime);
-                    temp.getTiempos().add(endTime);
-                    algoritmo.setNumIteraciones(numIteraciones);
-                    seed++;
-                }
-                informe.add(temp);
-                temp = new Imprimir();
-                temp.setFuncion(funcion);
-
-            }
-
-        }
-
-        generarInforme(informe, algoritmos.size(),numIteraciones);
+        Funcion fs = new Sphere(-100, 100,10,0);     
+        Funcion step = new Step(-100, 100,10,0);
+        AlgoritmoPoblacional genetico=new AlgoritmoGenetico(new Torneo(2), new EmparejamientoRestringido(5),new MutiBit(), new HijosMasPadres(20), new DosPuntos(),20);
+        genetico.setNumIteraciones(5000);
+        //genetico.ejecutar(fs, 0);
+        genetico.ejecutar(step,0);
     }
+//    public static void main(String[] args) {
+//        long seed = 0;
+//        int numIteraciones = 5000;
+//        int dimensiones = 10;
+//        double optimo=0;
+//
+//        
+//        
+//        ArrayList<AlgoritmoSimple> algoritmos = new ArrayList();
+//
+//        HillClimbing hc = new HillClimbing(numIteraciones, -0.5, 0.5);
+//        HillClimbingSA hcsa = new HillClimbingSA(numIteraciones, 5, -0.5, 0.5);
+//        HillClimbingSAR hcsar = new HillClimbingSAR(numIteraciones, 5, -0.5, 0.5);
+//        BHillClimbing bhc = new BHillClimbing(numIteraciones, 0.6, 0.5);
+//        HillClimbingRR hcrr = new HillClimbingRR(numIteraciones, 5, -0.5, 0.5);
+//        RandomSearch rs = new RandomSearch(numIteraciones);
+//        SimulatedAnnealing sa = new SimulatedAnnealing(numIteraciones, -0.5, 0.5);
+//
+//        algoritmos.add(bhc);
+//        algoritmos.add(hc);
+//        algoritmos.add(hcsa);
+//        algoritmos.add(hcsar);
+//        algoritmos.add(rs);
+//        algoritmos.add(hcrr);
+//        algoritmos.add(sa);
+//
+//        ArrayList<Funcion> funciones = new ArrayList();
+//
+//        Funcion fs = new Sphere(-100, 100, dimensiones,optimo);
+//        Funcion step = new Step(-100, 100, dimensiones,optimo);
+//        Funcion sch = new Schwefel(-100, 100, dimensiones,optimo);
+//        Funcion ras = new Rastrigin(-5.12, 5.12, dimensiones,optimo);
+//        Funcion grie = new Griewank(-600, 600, dimensiones,optimo);
+//        Funcion ack = new Ackley(-32, 32, dimensiones,optimo);
+//
+//        funciones.add(step);
+//        funciones.add(fs);
+//        funciones.add(sch);
+//        funciones.add(ras);
+//        funciones.add(grie);
+//        funciones.add(ack);
+//
+//        ArrayList<Imprimir> informe = new ArrayList();
+//        for (Funcion funcion : funciones) {
+//            Imprimir temp = new Imprimir();
+//            temp.setFuncion(funcion);
+//            for (AlgoritmoSimple algoritmo : algoritmos) {
+//                temp.setAlgoritmo(algoritmo);
+//                for (int i = 0; i < 30; i++) {
+//                    long startTime = System.nanoTime();
+//                    temp.getGanadores().add(algoritmo.ejecutar(funcion, seed));
+//                    long endTime = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime);
+//                    temp.getIteraciones().add(algoritmo.getNumIteraciones());
+//                    temp.getTiempos().add(endTime);
+//                    algoritmo.setNumIteraciones(numIteraciones);
+//                    seed++;
+//                }
+//                informe.add(temp);
+//                temp = new Imprimir();
+//                temp.setFuncion(funcion);
+//
+//            }
+//
+//        }
+//
+//        generarInforme(informe, algoritmos.size(),numIteraciones);
+//    }
 
     private static void generarInforme(ArrayList<Imprimir> informe, int numAlg, int numIteraciones) {
         String forStr = "%20s ";

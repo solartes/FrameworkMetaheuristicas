@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmos;
+package algoritmosEstadoSimple;
 
-import algoritmo_base.Algoritmo;
+import algoritmo_base.AlgoritmoSimple;
 import algoritmo_base.Individuo;
 import algoritmo_base.Funcion;
 import java.util.Random;
@@ -14,7 +14,7 @@ import java.util.Random;
  *
  * @author ingesis
  */
-public class HillClimbingSA extends Algoritmo {
+public class HillClimbingSA extends AlgoritmoSimple {
 
     Individuo sInd;
     Individuo rInd;

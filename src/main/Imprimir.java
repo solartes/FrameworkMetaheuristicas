@@ -5,7 +5,7 @@
  */
 package main;
 
-import algoritmo_base.Algoritmo;
+import algoritmo_base.AlgoritmoSimple;
 import algoritmo_base.Funcion;
 import algoritmo_base.Individuo;
 import java.util.ArrayList;
@@ -16,14 +16,14 @@ import java.util.ArrayList;
  */
 public class Imprimir {
 
-    Algoritmo algoritmo;
+    AlgoritmoSimple algoritmo;
     Funcion funcion;
     ArrayList<Individuo> ganadores;
     ArrayList<Long> tiempos;
     ArrayList<Integer> iteraciones;
     int mejorPos;
 
-    public Imprimir(Algoritmo algoritmo, Funcion funcion, ArrayList<Individuo> ganadores, ArrayList<Integer> iteraciones) {
+    public Imprimir(AlgoritmoSimple algoritmo, Funcion funcion, ArrayList<Individuo> ganadores, ArrayList<Integer> iteraciones) {
         this.algoritmo = algoritmo;
         this.funcion = funcion;
         this.ganadores = ganadores;
@@ -39,11 +39,11 @@ public class Imprimir {
         algoritmo = null;
     }
 
-    public Algoritmo getAlgoritmo() {
+    public AlgoritmoSimple getAlgoritmo() {
         return algoritmo;
     }
 
-    public void setAlgoritmo(Algoritmo algoritmo) {
+    public void setAlgoritmo(AlgoritmoSimple algoritmo) {
         this.algoritmo = algoritmo;
     }
 

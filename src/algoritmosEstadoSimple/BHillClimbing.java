@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmos;
+package algoritmosEstadoSimple;
 
-import algoritmo_base.Algoritmo;
+import algoritmo_base.AlgoritmoSimple;
 import algoritmo_base.Funcion;
 import algoritmo_base.Individuo;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.Random;
  *
  * @author Julian Esteban Solarte Rivera - Universidad del Cauca
  */
-public class BHillClimbing extends Algoritmo {
+public class BHillClimbing extends AlgoritmoSimple {
 
     double bandWidth;
     double beta;

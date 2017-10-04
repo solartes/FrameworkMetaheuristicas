@@ -25,14 +25,20 @@ public class Individuo {
     }
 
     public Individuo(Algoritmo algoritmo, ArrayList<Double> representacion) {
-        this.algoritmo=algoritmo;
+        this.algoritmo = algoritmo;
         this.representacion = representacion;
     }
- 
+
+    public Individuo() {
+        evaluacion=0;
+        representacion=new ArrayList();
+        algoritmo=null;
+    }
+
     public Individuo tweak() {
-        Random r=algoritmo.getR();
-        Funcion funcion=algoritmo.getFuncion();
-        Individuo copia = new Individuo(algoritmo,new ArrayList<>());
+        Random r = algoritmo.getR();
+        Funcion funcion = algoritmo.getFuncion();
+        Individuo copia = new Individuo(algoritmo, new ArrayList<>());
         double diff = 0;
         for (int i = 0; i < funcion.getDimensiones(); i++) {
             do {
@@ -46,7 +52,7 @@ public class Individuo {
     }
 
     private void iniciarIndividuo(Funcion funcion) {
-        Random r=algoritmo.getR();
+        Random r = algoritmo.getR();
         for (int i = 0; i < funcion.getDimensiones(); i++) {
             double ale = funcion.getRangoMin() + r.nextDouble() * (funcion.getRangoMax() - funcion.getRangoMin());
             representacion.add(ale);
@@ -70,5 +76,11 @@ public class Individuo {
     public void setEvaluacion(double evaluacion) {
         this.evaluacion = evaluacion;
     }
+
+    public Algoritmo getAlgoritmo() {
+        return algoritmo;
+    }
+    
+    
 
 }
