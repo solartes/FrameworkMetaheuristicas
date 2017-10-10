@@ -32,8 +32,9 @@ public class HijosMasPadres extends OperadorReemplazo{
             @Override
             public int compare(Object o1, Object o2) {
                 Individuo i2=(Individuo) o2;
-                Individuo i1=(Individuo) o1;                
-                return new Double(i1.getEvaluacion()).compareTo(i2.getEvaluacion());
+                Individuo i1=(Individuo) o1;              
+                return new Double(i2.getEvaluacion()).compareTo(i1.getEvaluacion());
+                //return new Double(i1.getEvaluacion()).compareTo(i2.getEvaluacion()); MINIMIZAR
             }
         });
         return new ArrayList<>(poblacionTotal.subList(0, tamPoblacion));

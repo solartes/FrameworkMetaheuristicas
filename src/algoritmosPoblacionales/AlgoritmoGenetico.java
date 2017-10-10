@@ -39,11 +39,10 @@ public class AlgoritmoGenetico extends AlgoritmoPoblacional {
         while (numIteraciones>=0) {
             best = poblacion.get(0);
             for (int i = 1; i < poblacion.size(); i++) {
-                if (best.getEvaluacion() < poblacion.get(i).getEvaluacion()) {
+                if (best.getEvaluacion() > poblacion.get(i).getEvaluacion()) {
                     best = poblacion.get(i);
                 }
             }
-            System.out.println("Best:"+best.getEvaluacion());
             for (int i = 0; i < poblacion.size() / 2; i++) {
                 padre = opSeleccion1.seleccionar(poblacion);
                 if (opSeleccion2 == null) {

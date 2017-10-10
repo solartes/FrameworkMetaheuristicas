@@ -54,8 +54,11 @@ public class Individuo {
     private void iniciarIndividuo(Funcion funcion) {
         Random r = algoritmo.getR();
         for (int i = 0; i < funcion.getDimensiones(); i++) {
-            double ale = funcion.getRangoMin() + r.nextDouble() * (funcion.getRangoMax() - funcion.getRangoMin());
-            representacion.add(ale);
+//            NOBINARIO
+//            double ale = funcion.getRangoMin() + r.nextDouble() * (funcion.getRangoMax() - funcion.getRangoMin());
+//            representacion.add(ale);
+              representacion.add((double)r.nextInt(2));
+
         }
         evaluacion = funcion.evaluarIndividuo(this);
         algoritmo.setNumIteraciones(algoritmo.getNumIteraciones() - 1);

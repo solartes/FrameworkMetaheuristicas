@@ -6,10 +6,9 @@
 package main;
 
 import algoritmo_base.AlgoritmoPoblacional;
-import algoritmosEstadoSimple.*;
 import main.*;
-import algoritmo_base.AlgoritmoSimple;
 import algoritmo_base.Funcion;
+import algoritmo_base.Individuo;
 import algoritmosPoblacionales.AlgoritmoGenetico;
 import funciones.*;
 import java.awt.Desktop;
@@ -18,13 +17,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import operadoresCruce.*;
 import operadoresMutacion.*;
 import operadoresReemplazo.*;
-import operadoresSeleccion.*;
 import operadoresSeleccion.*;
 
 /**
@@ -37,12 +34,12 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Funcion fs = new Sphere(-100, 100,10,0);     
-        Funcion step = new Step(-100, 100,10,0);
-        AlgoritmoPoblacional genetico=new AlgoritmoGenetico(new Torneo(2), new EmparejamientoRestringido(5),new MutiBit(), new HijosMasPadres(20), new DosPuntos(),20);
-        genetico.setNumIteraciones(5000);
-        //genetico.ejecutar(fs, 0);
-        genetico.ejecutar(step,0);
+        Funcion mochila=new Mochila(0, 1, 30, 295,"./Knapsack3.txt");
+        AlgoritmoPoblacional genetico=new AlgoritmoGenetico(new Torneo(2), new EmparejamientoRestringido(5),new MultiBit(), new HijosMasPadres(20), new DosPuntos(),20);
+        genetico.setNumIteraciones(100000);
+        Individuo ganador = genetico.ejecutar(mochila, 0);
+        System.out.println("Valor: "+ganador.getEvaluacion());
+        System.out.println("Solucion: "+ganador.getRepresentacion().toString());
     }
 //    public static void main(String[] args) {
 //        long seed = 0;

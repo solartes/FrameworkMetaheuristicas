@@ -14,11 +14,11 @@ import java.util.Random;
  *
  * @author Julian Esteban Solarte Rivera - Universidad del Cauca
  */
-public class MutiBit extends OperadorMutacion {
+public class MultiGen extends OperadorMutacion {
 
     Random r;
 
-    public MutiBit() {
+    public MultiGen() {
     }
 
     @Override
