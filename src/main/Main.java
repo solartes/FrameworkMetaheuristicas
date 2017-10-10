@@ -34,7 +34,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Funcion mochila=new Mochila(0, 1, 30, 295,"./Knapsack3.txt");
+        //Meter el tamaño de la mochila en el tercer parametro, si no no funciona!!!
+        Funcion mochila=new Mochila(0, 1, 10, 295,"./f1.txt");
         AlgoritmoPoblacional genetico=new AlgoritmoGenetico(new Torneo(2), new EmparejamientoRestringido(5),new MultiBit(), new HijosMasPadres(20), new DosPuntos(),20);
         genetico.setNumIteraciones(100000);
         Individuo ganador = genetico.ejecutar(mochila, 0);

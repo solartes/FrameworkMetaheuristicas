@@ -51,7 +51,13 @@ public class AlgoritmoGenetico extends AlgoritmoPoblacional {
                     madre = opSeleccion2.seleccionar(poblacion,padre);
                 }
                 hijos=opCruce.cruzar(padre,madre);
-                temp.addAll(opMutacion.mutar(hijos));
+                hijos=opMutacion.mutar(hijos);
+                //HACER UN METODO DE RECOSTRUCCION
+                //RECOSTRUCCION(HIJOS)
+                //El metodo debe arreglar los hijos que no sirvan(que sobrepasen el peso de la mochila)
+                //UNA forma de hacerlo es quitar los objetos con menos densidad(ver diapositivas) e ir metiendo
+                //hasta que se arregle
+                temp.addAll(hijos);
             }
             poblacion=opReemplazo.reemplazar(poblacion,temp);
             temp=new ArrayList<>();
